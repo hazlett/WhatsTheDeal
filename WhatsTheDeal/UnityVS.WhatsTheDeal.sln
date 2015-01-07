@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityVS.WhatsTheDeal.CSharp", "UnityVS.WhatsTheDeal.CSharp.csproj", "{6F6B8D5E-FB27-A548-1BD8-F9A8562F1311}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6F6B8D5E-FB27-A548-1BD8-F9A8562F1311}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F6B8D5E-FB27-A548-1BD8-F9A8562F1311}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F6B8D5E-FB27-A548-1BD8-F9A8562F1311}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F6B8D5E-FB27-A548-1BD8-F9A8562F1311}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
