@@ -36,6 +36,23 @@ public class ServerHandler : MonoBehaviour {
 	
 	}
 
+    void OnGUI()
+    {
+        if (authenticating && !Splash.inSplash)
+            GUI.Button(new Rect(0, 0, Screen.width, Screen.height), "AUTHENTICATING");
+
+    }
+    internal void StartAuthenticate(string username, string password)
+    {
+        StartCoroutine(Authenticate(username, password));
+    }
+
+    private IEnumerator Authenticate(string username, string password)
+    {
+        throw new System.NotImplementedException();
+        //if auth successful returns a user and set that user.
+        //if auth failed let user know of failure and re-enter info
+    }
     internal void StartAuthenticate()
     {
         authenticated = false;

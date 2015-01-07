@@ -2,39 +2,23 @@
 using System.Collections;
 
 public class Splash : MonoBehaviour {
-
+    internal static bool inSplash;
     private float timer;
-    private enum LoadState
-    {
-        LOADING,
-        USERFOUND,
-        NOUSER
-    }
-    private LoadState loadState;
+
     void Start()
     {
+        inSplash = true;
         timer = 0;
-        loadState = LoadState.LOADING;
         StartCoroutine("CheckUser");
     }
 
     void Update()
     {
         timer += Time.deltaTime;
-        if ((timer > 3) && (loadState != LoadState.LOADING))
+        if (timer > 3)
         {
-            switch (loadState)
-            {
-                case LoadState.NOUSER:
-                    Application.LoadLevel("Login");
-                    break;
-                case LoadState.USERFOUND:
-                    Application.LoadLevel("Main");
-                    break;
-                default:
-                    Application.LoadLevel("Login");
-                    break;
-            }
+            inSplash = false;
+            //enable Login canvas
         }
     }
     private IEnumerator CheckUser()
@@ -47,18 +31,9 @@ public class Splash : MonoBehaviour {
             if (user.AutoLogin == "true")
             {
                 ServerHandler.Instance.SetUser(user);
-                loadState = LoadState.USERFOUND;
-            }
-            else
-            {
-                loadState = LoadState.NOUSER;
+                ServerHandler.Instance.StartAuthenticate();         
             }
         }
-        else
-        {
-            loadState = LoadState.NOUSER;
-        }
-
     }
     void OnGUI()
     {
