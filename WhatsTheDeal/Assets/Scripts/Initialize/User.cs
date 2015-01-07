@@ -4,20 +4,21 @@ using System.Xml.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
+using System.Xml;
 
 [XmlRoot]
 public class User {
 
     [XmlAttribute]
-    public string Username;
+    public string Username = "";
     [XmlAttribute]
-    public string AutoLogin;
+    public string AutoLogin = "";
     [XmlElement]
-    public List<string> Favorites;
+    public List<string> Favorites = new List<string>();
     [XmlElement]
-    public List<string> ConnectedAccounts;
+    public List<string> ConnectedAccounts = new List<string>();
     [XmlElement]
-    public string AppIdNumber;
+    public string AppIdNumber = "";
    
     internal User Load()
     {
@@ -45,5 +46,24 @@ public class User {
             xmls.Serialize(stream, this);
         }
     }
+    internal static User StringToUser(string text)
+    {
+        try
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.LoadXml(text);
 
+            User obj = new User();
+            XmlSerializer serializer = new XmlSerializer(typeof(User));
+            XmlReader reader = new XmlNodeReader(doc);
+
+            obj = serializer.Deserialize(reader) as User;
+
+            return obj;
+        }
+        catch (Exception)
+        {
+            return null;
+        }
+    }
 }
