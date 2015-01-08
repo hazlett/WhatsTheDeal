@@ -51,14 +51,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Dropdown Menu\GUI\Scripts\DropDownMenuGUI.cs" />
-    <Compile Include="Assets\Dropdown Menu\GUI\Scripts\DropdownMenu.cs" />
     <Compile Include="Assets\RestaurantAppInterface\MainMenuUI.cs" />
     <Compile Include="Assets\Scripts\DontDestroy.cs" />
     <Compile Include="Assets\Scripts\Initialize\ServerHandler.cs" />
     <Compile Include="Assets\Scripts\Initialize\Splash.cs" />
     <Compile Include="Assets\Scripts\Initialize\User.cs" />
-    <Compile Include="Assets\Scripts\Login\LoginGUI.cs" />
     <Compile Include="Assets\Tiles\Scripts\TilesGUI.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2013\UnityVS.CSharp.targets" />
