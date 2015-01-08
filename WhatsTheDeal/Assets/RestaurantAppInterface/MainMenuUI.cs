@@ -4,22 +4,28 @@ using System.Collections;
 
 public class MainMenuUI : MonoBehaviour {
 
-    public Text username, password;
+    private static MainMenuUI instance;
+    internal static MainMenuUI Instance { get { return instance; } }
+
+    public InputField username, password;
     public Canvas loginCanvas, appHomeCanvas;
     public Animator navAnimation;
 
 	void Awake () {
-	
+        DontDestroyOnLoad(gameObject);
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
 	}
 
     public void LogIn()
     {
-        //Check Username and Password in DB
-        //Disable this canvas
-        //Enable app home canvas
-        appHomeCanvas.enabled = true;
-        navAnimation.SetBool("isHidden", false);
-        loginCanvas.enabled = false;
+        ServerHandler.Instance.StartAuthenticate(username.text, password.text);
     }
 
     public void ToggleNav()
