@@ -25,6 +25,7 @@ public class MainMenuUI : MonoBehaviour {
 
     public void LogIn()
     {
+        bool check = ServerHandler.Instance.enabled;
         ServerHandler.Instance.StartAuthenticate(username.text, password.text);
     }
 
