@@ -75,6 +75,48 @@ public class ServerHandler : MonoBehaviour {
         authenticating = false;
     }
 
+    internal void StartCreateUser(string username, string password)
+    {
+        StartCoroutine(CreateUser(username, password));
+    }
+    private IEnumerator CreateUser(string username, string password)
+    {
+        WWWForm form = new WWWForm();
+        form.AddField("username", username);
+        form.AddField("password", password);
+        WWW www = new WWW("http://hazlett206.ddns.net/Deal/CreateUser.php", form);
+        yield return www;
+        if (www.error == null)
+        {
+            if (www.text == "USER CREATED")
+            {
+                Debug.Log("User created");
+                user = new User();
+                user.Username = username;
+                user.AppIdNumber = password;
+                authenticated = true;
+                MainMenuUI.Instance.appHomeCanvas.enabled = true;
+                MainMenuUI.Instance.newUserCanvas.enabled = false;
+            }
+            else
+            {
+                Debug.Log("User not created: " + www.text);
+                MainMenuUI.Instance.message.text = "USER EXISTS ALREADY";
+                MainMenuUI.Instance.newUsername.text = "";
+                MainMenuUI.Instance.newPassword.text = "";
+                MainMenuUI.Instance.newConfirmPassword.text = "";
+            }
+        }
+        else
+        {
+            Debug.Log("Create user error: " + www.error);
+            MainMenuUI.Instance.message.text = "ERROR MAKING USER";
+            MainMenuUI.Instance.newUsername.text = "";
+            MainMenuUI.Instance.newPassword.text = "";
+            MainMenuUI.Instance.newConfirmPassword.text = "";
+        }
+    }
+
 
     //for auto Auth
     internal void StartAuthenticate()
